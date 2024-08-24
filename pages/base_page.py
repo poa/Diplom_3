@@ -14,7 +14,7 @@ class BasePage(Locators):
 
     def __init__(self, driver):
         self.driver = driver
-        self.Header = HeaderComponent(self.driver)
+        self.header = HeaderComponent(self.driver)
         self.app_url = driver.current_url.strip("/")
         self.page_url = self.app_url + self.PAGE_PATH
 

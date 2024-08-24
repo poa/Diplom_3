@@ -3,8 +3,8 @@ class Constants:
 
     # PATH constants
     ACCOUNT_PATH = "/account"
-    ACCOUNT_PROFILE_PATH = "/account/profile"
-    ACCOUNT_ORDER_HISTORY_PATH = "/account/order/history"
+    PROFILE_PATH = "/account/profile"
+    ORDER_HISTORY_PATH = "/account/order-history"
     FEED_PATH = "/feed"
     LOGIN_PATH = "/login"
     MAIN_PATH = "/"
