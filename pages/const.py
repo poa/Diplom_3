@@ -9,7 +9,7 @@ class Constants:
     LOGIN_PATH = "/login"
     MAIN_PATH = "/"
     REGISTER_PATH = "/register"
-    FORGOT_PASSWORD_PATH = "/forgot-assword"
+    FORGOT_PASSWORD_PATH = "/forgot-password"
     RESET_PASSWORD_PATH = "/reset-password"
 
 

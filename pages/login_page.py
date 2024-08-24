@@ -7,11 +7,11 @@ from .base_page import BasePage
 
 class Locators:
     # fmt: off
-    L_EMAIL_INPUT       = (By.CSS_SELECTOR, "main input:is([type='text'])")
-    L_PASSWORD_INPUT    = (By.CSS_SELECTOR, "main input:is([type='password'])")
+    L_EMAIL_INPUT       = (By.CSS_SELECTOR, "main input[type='text']")
+    L_PASSWORD_INPUT    = (By.CSS_SELECTOR, "main input[type='password']")
     L_LOGIN_BUTTON      = (By.CSS_SELECTOR, "main button")
-    L_REGISTER_LINK     = (By.CSS_SELECTOR, f"main a[href={C.REGISTER_PATH}")
-    L_FORGOT_LINK       = (By.CSS_SELECTOR, f"main a[href={C.FORGOT_PASSWORD_PATH}")
+    L_REGISTER_LINK     = (By.CSS_SELECTOR, f"main a[href='{C.REGISTER_PATH}'")
+    L_FORGOT_LINK       = (By.CSS_SELECTOR, f"main a[href='{C.FORGOT_PASSWORD_PATH}'")
     # fmt: on
 
 
