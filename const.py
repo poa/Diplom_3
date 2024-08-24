@@ -2,10 +2,14 @@
 
 class Constants:
     APP_URL = "https://stellarburgers.nomoreparties.site"
-    API_URI = f"{APP_URL}/api"
 
-    TEST_EMAIL = "test-op-10@test.host"
-    TEST_PASSWORD = "P@ssw0rd"
+    PASSWORD = "P@ssw0rd"
+
+    TEST_USER = {
+        "email": "test-op-10@test.host",
+        "password": f"{PASSWORD}",
+        "name": "test-op-10",
+    }
 
     TIMEOUT = 5
 
