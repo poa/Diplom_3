@@ -2,8 +2,9 @@ from selenium.webdriver.common.by import By
 
 from .const import Constants as C
 from .tools import PageMethods as PM
-from .base_page import BasePage
+
 from .account_nav_comp import AccountNavComp
+from .base_page import BasePage
 
 
 class Locators:

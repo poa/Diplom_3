@@ -1,5 +1,6 @@
 from typing import Tuple
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -72,6 +73,18 @@ class PageMethods:
             element = target
         PageMethods.scroll_to_clickable_element(driver, element, timeout)
         element.click()
+
+    @staticmethod
+    def drag_element(driver, src: WebElement | Tuple[str, str], dst: WebElement | Tuple[str, str], timeout=TIMEOUT):
+        if isinstance(dst, Tuple):
+            _src = PageMethods.find_present_element(driver, src, timeout)
+            _dst = PageMethods.find_present_element(driver, dst, timeout)
+        else:
+            _src = src
+            _dst = dst
+
+        PageMethods.scroll_to_clickable_element(driver, _src, timeout)
+        ActionChains(driver).drag_and_drop(_src, _dst).perform()
 
     @staticmethod
     def fill_text_input(driver, locator, data):

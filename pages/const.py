@@ -1,3 +1,6 @@
+import enum
+
+
 class Constants:
     TIMEOUT = 5
 
@@ -11,8 +14,10 @@ class Constants:
     REGISTER_PATH = "/register"
     FORGOT_PASSWORD_PATH = "/forgot-password"
     RESET_PASSWORD_PATH = "/reset-password"
+    INGREDIENT_PATH = "/ingredient"
 
 
-
-
-
+class IngredientType(enum.StrEnum):
+    BUNS = "Булки"
+    FILLINGS = "Начинки"
+    SAUCES = "Соусы"

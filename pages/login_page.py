@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 from .const import Constants as C
 from .tools import PageMethods as PM
+
 from .base_page import BasePage
 
 

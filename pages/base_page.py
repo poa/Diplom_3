@@ -1,4 +1,5 @@
 import allure
+from selenium.webdriver.common.by import By
 
 from .const import Constants as C
 from .header_comp import HeaderComponent
@@ -6,6 +7,7 @@ from .tools import PageMethods as PM
 
 
 class Locators:
+    L_ORDER_ID = (By.CSS_SELECTOR, "p[class*='text text_type_digits'")
     pass
 
 
