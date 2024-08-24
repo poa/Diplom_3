@@ -1,9 +1,8 @@
 import allure
 
-from const import Constants as C
-# from data import TestData as TD
-from pages.header_comp import HeaderComponent
-from tools import PageMethods as PM
+from .const import Constants as C
+from .header_comp import HeaderComponent
+from .tools import PageMethods as PM
 
 
 class Locators:
@@ -16,7 +15,8 @@ class BasePage(Locators):
     def __init__(self, driver):
         self.driver = driver
         self.Header = HeaderComponent(self.driver)
-        self.page_url = C.APP_URL + self.PAGE_PATH
+        self.app_url = driver.current_url.strip("/")
+        self.page_url = self.app_url + self.PAGE_PATH
 
     @allure.step("Open page")
     def open_page(self):

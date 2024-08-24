@@ -22,5 +22,6 @@ def driver(test_user, request):
     options.add_argument("--window-size=1280,1280")
     options.add_argument("--window-position=2560,32")
     driver = _Driver(options=options)
+    driver.get(C.APP_URL)
     yield driver
     driver.quit()
