@@ -30,7 +30,7 @@ class LoginPage(BasePage, Locators):
         self.fill_text_input(self.L_EMAIL_INPUT, email)
         self.fill_text_input(self.L_PASSWORD_INPUT, password)
         self.click_login_button()
-        
+
     def is_password_revealed(self):
         result = PM.is_visible(self.driver, self.L_PASSWORD_REVEALED)
         return result

@@ -22,9 +22,9 @@ def test_user():
         yield test_user
 
 
-# @pytest.fixture(params=["Firefox", "Chrome"], scope="function")
+@pytest.fixture(params=["Firefox", "Chrome"], scope="function")
 # @pytest.fixture(params=["Chrome"], scope="function")
-@pytest.fixture(params=["Firefox"], scope="function")
+# @pytest.fixture(params=["Firefox"], scope="function")
 def driver(request, test_user):
     _Driver = getattr(webdriver, request.param)
     _Options = getattr(webdriver, f"{request.param}Options")
@@ -47,10 +47,9 @@ def driver(request, test_user):
 def authorized(driver, test_user):
     login_page = LoginPage(driver)
     login_page.open_page()
-    if login_page.is_loaded:
+    if login_page.is_loaded():
         login_page.login(email=test_user.email, password=test_user.password)
-        del login_page
+        yield driver
     else:
         raise RuntimeError("Login failed")
 
-    yield driver

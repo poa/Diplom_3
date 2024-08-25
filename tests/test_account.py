@@ -1,46 +1,35 @@
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
-from pages.profile_page import ProfilePage
-from pages.ordery_history_page import OrederHistoryPage
+from pages.account_page import AccountPage
 
 
 class TestAccount:
-    def test_account_link_unauthorized_open_login_page(self, driver):
-        main_page = MainPage(driver)
+    def test_account_link_unauthorized_opens_login_page(self, driver):
         login_page = LoginPage(driver)
 
-        main_page.open_page()
-        main_page.header.click_account_link()
+        login_page.click_header_account_link()
 
         assert login_page.is_loaded()
 
-    def test_account_link_authorized_open_profile_page(self, authorized):
-        main_page = MainPage(authorized)
-        profile_page = ProfilePage(authorized)
+    def test_authorized_user_account_link_opens_profile(self, authorized):
+        account_page = AccountPage(authorized)
+        account_page.click_header_account_link()
 
-        main_page.open_page()
-        main_page.header.click_account_link()
+        assert account_page.is_profile_page_loaded()
 
-        assert profile_page.is_loaded()
+    def test_authorized_user_opens_order_history_successful(self, authorized):
+        account_page = AccountPage(authorized)
 
-    def test_open_order_history_successful(self, authorized):
-        main_page = MainPage(authorized)
-        profile_page = ProfilePage(authorized)
-        order_history_page = OrederHistoryPage(authorized)
+        account_page.click_header_account_link()
+        account_page.click_order_history_link()
 
-        main_page.open_page()
-        main_page.header.click_account_link()
-        profile_page.nav.click_order_history_link()
-
-        assert order_history_page.is_loaded
+        assert account_page.is_order_history_page_loaded()
 
     def test_logout_successful(self, authorized):
-        main_page = MainPage(authorized)
         login_page = LoginPage(authorized)
-        profile_page = ProfilePage(authorized)
+        account_page = AccountPage(authorized)
 
-
-        main_page.header.click_account_link()
-        profile_page.nav.click_logout_button()
+        account_page.click_header_account_link()
+        account_page.click_logout_button()
 
         assert login_page.is_loaded()

@@ -2,7 +2,7 @@ import enum
 
 
 class Constants:
-    TIMEOUT = 7
+    TIMEOUT = 3
 
 
 class IngredientType(enum.StrEnum):
