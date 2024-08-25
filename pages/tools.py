@@ -1,12 +1,11 @@
 from typing import Tuple
 from urllib.parse import urlparse
 
-from selenium.common import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 from .const import Constants as C
 
@@ -25,6 +24,12 @@ class PageMethods:
     @staticmethod
     def get_current_path(driver):
         return urlparse(driver.current_url).path
+
+    @staticmethod
+    def get_app_url(driver):
+        scheme, netloc, path, params, query, fragment = urlparse(driver.current_url)
+        app_url = f"{scheme}://{netloc}"
+        return app_url
 
     @staticmethod
     def find_present_element(driver, locator, timeout=TIMEOUT):
@@ -51,9 +56,7 @@ class PageMethods:
         return element
 
     @staticmethod
-    def scroll_to_element(
-        driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT
-    ):
+    def scroll_to_element(driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT):
         if isinstance(target, Tuple):
             element = PageMethods.find_present_element(driver, target, timeout)
         else:
@@ -62,9 +65,7 @@ class PageMethods:
         WebDriverWait(driver, timeout).until(EC.visibility_of(element))
 
     @staticmethod
-    def scroll_to_clickable_element(
-        driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT
-    ):
+    def scroll_to_clickable_element(driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT):
         if isinstance(target, Tuple):
             element = PageMethods.find_present_element(driver, target, timeout)
         else:
@@ -82,7 +83,12 @@ class PageMethods:
         element.click()
 
     @staticmethod
-    def drag_element(driver, src: WebElement | Tuple[str, str], dst: WebElement | Tuple[str, str], timeout=TIMEOUT):
+    def drag_element(
+        driver,
+        src: WebElement | Tuple[str, str],
+        dst: WebElement | Tuple[str, str],
+        timeout=TIMEOUT,
+    ):
         if isinstance(dst, Tuple):
             _src = PageMethods.find_present_element(driver, src, timeout)
             _dst = PageMethods.find_present_element(driver, dst, timeout)
@@ -99,10 +105,20 @@ class PageMethods:
         PageMethods.click_element(driver, element)
         element.send_keys(data)
 
+    # @staticmethod
+    # def is_displayed(driver, locator):
+    #     try:
+    #         element = PageMethods.find_present_element(driver, locator)
+    #         result = element.is_displayed()
+    #     except (NoSuchElementException, TimeoutException):
+    #         result = False
+    #
+    #     return result
+
     @staticmethod
-    def is_displayed(driver, locator):
+    def is_visible(driver, locator):
         try:
-            element = PageMethods.find_present_element(driver, locator)
+            element = PageMethods.find_visible_element(driver, locator)
             result = element.is_displayed()
         except (NoSuchElementException, TimeoutException):
             result = False

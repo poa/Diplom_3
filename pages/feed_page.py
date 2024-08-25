@@ -8,7 +8,7 @@ from .base_page import BasePage
 
 class Locators:
     # fmt: off
-    L_PAGE_TITLE    = (By.XPATH        , f"//main//h2[text()='{PT.FEED}']")
+    L_PAGE_TITLE    = (By.XPATH        , f"//main//h1[text()='{PT.FEED}']")
     L_LATEST_ORDER  = (By.CSS_SELECTOR , "main li:first-of-type>a")
     L_TOTAL_COUNTER = (By.XPATH        , "//p[contains(text(),'за все время')]/../p[starts-with(@class,'OrderFeed_number')]")
     L_DAILY_COUNTER = (By.XPATH        , "//p[contains(text(),'за сегодня')]/../p[starts-with(@class,'OrderFeed_number')]")

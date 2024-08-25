@@ -11,7 +11,7 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
         self.header = HeaderComponent(self.driver)
-        self.app_url = driver.current_url.strip("/")
+        self.app_url = PM.get_app_url(self.driver)
         self.page_url = self.app_url + self.PAGE_PATH
         self._is_loaded_locator = ()
 
@@ -22,7 +22,7 @@ class BasePage:
     @property
     def is_loaded(self):
         result = (
-            PM.is_displayed(self.driver, self._is_loaded_locator)
+            PM.is_visible(self.driver, self._is_loaded_locator)
             and self.current_path == self.PAGE_PATH
         )
         return result

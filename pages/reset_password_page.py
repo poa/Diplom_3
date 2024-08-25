@@ -33,7 +33,7 @@ class ResetPasswordPage(BasePage, Locators):
 
     @property
     def is_password_revealed(self):
-        result = PM.is_displayed(self.driver, self.L_PASSWORD_REVEALED)
+        result = PM.is_visible(self.driver, self.L_PASSWORD_REVEALED)
         return result
 
     def click_login_link(self):

@@ -2,7 +2,7 @@ import enum
 
 
 class Constants:
-    TIMEOUT = 5
+    TIMEOUT = 7
 
 
 class IngredientType(enum.StrEnum):
@@ -15,16 +15,16 @@ class IngredientType(enum.StrEnum):
 
 class PagePath(enum.StrEnum):
     # fmt: off
-    ACCOUNT        = "/account"
-    FEED           = "/feed"
-    RECOVER_PASSWORD         = "/forgot-password"
-    INGREDIENT     = "/ingredient"
-    LOGIN          = "/login"
-    MAIN           = "/"
-    ORDER_HISTORY  = "/account/order-history"
-    PROFILE        = "/account/profile"
-    REGISTER       = "/register"
-    RESET_PASSWORD          = "/reset-password"
+    ACCOUNT          = "/account"
+    FEED             = "/feed"
+    RECOVER_PASSWORD = "/forgot-password"
+    INGREDIENT       = "/ingredient"
+    LOGIN            = "/login"
+    MAIN             = "/"
+    ORDER_HISTORY    = "/account/order-history"
+    PROFILE          = "/account/profile"
+    REGISTER         = "/register"
+    RESET_PASSWORD   = "/reset-password"
     # fmt: on
 
 

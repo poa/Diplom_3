@@ -27,7 +27,7 @@ class AuthAPI:
 
     def __exit__(self, *args):
         print(
-            f" :: On exit delete status for user {self.email}: {self.delete()}: {self.last_json.get("message")}"
+            f"\n*** On exit delete status for user {self.email}: {self.delete()}: {self.last_json.get("message")}"
         )
 
     def __update_tokens(self, resp):

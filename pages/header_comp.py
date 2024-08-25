@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from .const import PagePath as PP, PageTitle as PT
+from .const import PagePath as PP
 from .tools import PageMethods as PM
 
 
@@ -27,7 +27,7 @@ class HeaderComponent(Locators):
     def click_feed_link(self):
         PM.click_element(self.driver, self.L_FEED_LINK)
 
-    def click_main_link(self):
+    def click_constructor_link(self):
         PM.click_element(self.driver, self.L_MAIN_LINK)
 
     def click_burger_logo(self):

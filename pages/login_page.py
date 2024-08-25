@@ -35,7 +35,7 @@ class LoginPage(BasePage, Locators):
         PM.click_element(self.driver, self.L_SHOW_PASSWORD_ICON)
 
     def is_password_revealed(self):
-        result = PM.is_displayed(self.driver, self.L_PASSWORD_REVEALED)
+        result = PM.is_visible(self.driver, self.L_PASSWORD_REVEALED)
         return result
 
     def click_login_button(self):
