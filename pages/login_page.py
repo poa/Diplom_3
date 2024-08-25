@@ -27,22 +27,22 @@ class LoginPage(BasePage, Locators):
         self._is_loaded_locator = self.L_PAGE_TITLE
 
     def login(self, email, password):
-        PM.fill_text_input(self.driver, self.L_EMAIL_INPUT, email)
-        PM.fill_text_input(self.driver, self.L_PASSWORD_INPUT, password)
+        self.fill_text_input(self.L_EMAIL_INPUT, email)
+        self.fill_text_input(self.L_PASSWORD_INPUT, password)
         self.click_login_button()
-
-    def click_show_password_button(self):
-        PM.click_element(self.driver, self.L_SHOW_PASSWORD_ICON)
-
+        
     def is_password_revealed(self):
         result = PM.is_visible(self.driver, self.L_PASSWORD_REVEALED)
         return result
 
+    def click_show_password_button(self):
+        self.click_element(self.L_SHOW_PASSWORD_ICON)
+
     def click_login_button(self):
-        PM.click_element(self.driver, self.L_LOGIN_BUTTON)
+        self.click_element(self.L_LOGIN_BUTTON)
 
     def click_register_link(self):
-        PM.click_element(self.driver, self.L_REGISTER_LINK)
+        self.click_element(self.L_REGISTER_LINK)
 
     def click_recover_link(self):
-        PM.click_element(self.driver, self.L_RECOVER_LINK)
+        self.click_element(self.L_RECOVER_LINK)

@@ -26,18 +26,17 @@ class ResetPasswordPage(BasePage, Locators):
         self._is_loaded_locator = self.L_PASSWORD_INPUT
 
     def fill_password(self, password):
-        PM.fill_text_input(self.driver, self.L_PASSWORD_INPUT, password)
+        self.fill_text_input(self.L_PASSWORD_INPUT, password)
 
-    def click_show_password_button(self):
-        PM.click_element(self.driver, self.L_SHOW_PASSWORD_ICON)
-
-    @property
     def is_password_revealed(self):
         result = PM.is_visible(self.driver, self.L_PASSWORD_REVEALED)
         return result
 
+    def click_show_password_button(self):
+        self.click_element(self.L_SHOW_PASSWORD_ICON)
+
     def click_login_link(self):
-        PM.click_element(self.driver, self.L_LOGIN_LINK)
+        self.click_element(self.L_LOGIN_LINK)
 
     def click_save_button(self):
-        PM.click_element(self.driver, self.L_SAVE_BUTTON)
+        self.click_element(self.L_SAVE_BUTTON)

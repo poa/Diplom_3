@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from .const import IngredientType as IT, PagePath as PP, PageTitle as PT
 from .tools import PageMethods as PM
 
-from .modal_comp import ModalComponent
 from .base_page import BasePage
 
 
@@ -24,7 +23,6 @@ class MainPage(BasePage, Locators):
 
     def __init__(self, driver):
         BasePage.__init__(self, driver)
-        self.modal = ModalComponent(self.driver)
         self._is_loaded_locator = self.L_PAGE_TITLE
 
     def click_buns_tab(self):
@@ -58,7 +56,3 @@ class MainPage(BasePage, Locators):
 
     def click_make_order(self):
         PM.click_element(self.driver, self.L_MAKE_ORDER_BUTTON)
-        
-        
-        
-        

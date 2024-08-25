@@ -56,6 +56,14 @@ class PageMethods:
         return element
 
     @staticmethod
+    def check_invisibility(driver, locator, timeout=TIMEOUT):
+        result = WebDriverWait(driver, timeout).until(
+            EC.invisibility_of_element(locator),
+            message=f"Not found: {locator}",
+        )
+        return result
+
+    @staticmethod
     def scroll_to_element(driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT):
         if isinstance(target, Tuple):
             element = PageMethods.find_present_element(driver, target, timeout)
@@ -105,22 +113,32 @@ class PageMethods:
         PageMethods.click_element(driver, element)
         element.send_keys(data)
 
-    # @staticmethod
-    # def is_displayed(driver, locator):
-    #     try:
-    #         element = PageMethods.find_present_element(driver, locator)
-    #         result = element.is_displayed()
-    #     except (NoSuchElementException, TimeoutException):
-    #         result = False
-    #
-    #     return result
+    @staticmethod
+    def is_displayed(driver, locator) -> bool:
+        try:
+            element = PageMethods.find_present_element(driver, locator)
+            result = element.is_displayed()
+        except (NoSuchElementException, TimeoutException):
+            result = False
+
+        return result
 
     @staticmethod
-    def is_visible(driver, locator):
+    def is_visible(driver, locator) -> bool:
         try:
             element = PageMethods.find_visible_element(driver, locator)
             result = element.is_displayed()
         except (NoSuchElementException, TimeoutException):
+            result = False
+
+        return result
+
+    @staticmethod
+    def is_invisible(driver, locator):
+        check_result = PageMethods.check_invisibility(driver, locator)
+        if isinstance(check_result, bool):
+            result = check_result
+        else:
             result = False
 
         return result

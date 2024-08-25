@@ -12,7 +12,7 @@ class TestMain:
         login_page.open_page()
         login_page.header.click_constructor_link()
 
-        assert main_page.is_loaded
+        assert main_page.is_loaded()
 
     def test_open_feed_page_from_constructor_successful(self, authorized):
         main_page = MainPage(authorized)
@@ -20,14 +20,14 @@ class TestMain:
 
         main_page.header.click_feed_link()
 
-        assert feed_page.is_loaded
+        assert feed_page.is_loaded()
 
     def test_click_ingredient_opens_details_successful(self, authorized, data):
         main_page = MainPage(authorized)
 
         main_page.click_ingredient(ingredient=data.get_ingredient(IT.BUNS))
 
-        assert main_page.modal.is_open
+        assert main_page.modal.is_modal_container_open
 
     def test_close_ingredient_details_successful(self, authorized, data):
         main_page = MainPage(authorized)
@@ -35,7 +35,7 @@ class TestMain:
         main_page.click_ingredient(ingredient=data.get_ingredient(IT.BUNS))
         main_page.modal.close_open_modal_container()
 
-        assert main_page.modal.is_open is False
+        assert main_page.modal.is_modal_container_open is False
 
     def test_add_ingredient_increased_counter(self, authorized, data):
         main_page = MainPage(authorized)
@@ -56,5 +56,5 @@ class TestMain:
         main_page.add_ingredient_to_order(filling)
         main_page.click_make_order()
 
-        assert main_page.modal.is_open
+        assert main_page.modal.is_modal_container_open()
 

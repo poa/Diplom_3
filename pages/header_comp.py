@@ -5,10 +5,6 @@ from .tools import PageMethods as PM
 
 
 class Locators:
-    """Locators class
-    Contains locators for header component
-    """
-
     # fmt: off
     L_ACCOUNT_LINK = (By.CSS_SELECTOR , f"header a:is([class][href='{PP.ACCOUNT}'])")
     L_FEED_LINK    = (By.CSS_SELECTOR , f"header a:is([class][href='{PP.FEED}'])")
@@ -20,6 +16,9 @@ class Locators:
 class HeaderComponent(Locators):
     def __init__(self, driver):
         self.driver = driver
+
+    def click_header_link(self, locator):
+        PM.click_element(self.driver, Locators.L_ACCOUNT_LINK)
 
     def click_account_link(self):
         PM.click_element(self.driver, self.L_ACCOUNT_LINK)

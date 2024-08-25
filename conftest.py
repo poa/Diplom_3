@@ -22,16 +22,22 @@ def test_user():
         yield test_user
 
 
-# @pytest.fixture(params=["Firefox", "Chrome"])
-@pytest.fixture(params=["Chrome"], scope="function")
+# @pytest.fixture(params=["Firefox", "Chrome"], scope="function")
+# @pytest.fixture(params=["Chrome"], scope="function")
+@pytest.fixture(params=["Firefox"], scope="function")
 def driver(request, test_user):
     _Driver = getattr(webdriver, request.param)
     _Options = getattr(webdriver, f"{request.param}Options")
     options = _Options()
     # options.add_argument("--headless")
-    options.add_argument("--window-size=1280,1280")
-    options.add_argument("--window-position=2560,32")
+    # options.add_argument("--user-data-dir=R:/browsers/webdriver")
+    # options.add_argument("--ignore-certificate-errors")
+    # options.add_argument("--window-size=1280,1280")
+    # options.add_argument("--window-position=2560,32")
     driver = _Driver(options=options)
+    driver.set_window_position(2560, 32)
+    driver.set_window_size(1280, 1280)
+
     driver.get(C.APP_URL)
     yield driver
     driver.quit()

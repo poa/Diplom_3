@@ -23,11 +23,11 @@ class RecoverPasswordPage(BasePage, Locators):
         self._is_loaded_locator = self.L_PAGE_TITLE
 
     def recover(self, email):
-        PM.fill_text_input(self.driver, self.L_EMAIL_INPUT, email)
+        self.fill_text_input(self.L_EMAIL_INPUT, email)
         self.click_recover_button()
 
     def click_recover_button(self):
-        PM.click_element(self.driver, self.L_RECOVER_BUTTON)
+        self.click_element(self.L_RECOVER_BUTTON)
 
     def click_login_link(self):
-        PM.click_element(self.driver, self.L_LOGIN_LINK)
+        self.click_element(self.L_LOGIN_LINK)
