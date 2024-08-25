@@ -15,7 +15,7 @@ class Locators:
     L_SHOW_PASSWORD_ICON = (By.CSS_SELECTOR , "main div[class^='input__icon']>svg")
     L_LOGIN_BUTTON       = (By.CSS_SELECTOR , "main button")
     L_REGISTER_LINK      = (By.CSS_SELECTOR , f"main a[href='{PP.REGISTER}'")
-    L_RECOVER_LINK       = (By.CSS_SELECTOR , f"main a[href='{PP.RECOVER_PASSWORD}'")
+    L_RECOVER_LINK       = (By.CSS_SELECTOR , f"main a[href='{PP.FORGOT_PASSWORD}'")
     # fmt: on
 
 

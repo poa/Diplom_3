@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 from .const import PagePath as PP
-from .tools import PageMethods as PM
 from .base_page import BasePage
 
 
@@ -31,10 +30,10 @@ class AccountPage(BasePage, Locators):
         return self.is_loaded(self.L_ORDER_HISTORY_BOX, PP.ORDER_HISTORY)
 
     def click_cancel_button(self):
-        PM.click_element(self.driver, self.L_CANCEL_BUTTON)
+        self.click_element(self.L_CANCEL_BUTTON)
 
     def click_save_button(self):
-        PM.click_element(self.driver, self.L_SAVE_BUTTON)
+        self.click_element(self.L_SAVE_BUTTON)
 
     def click_profile_link(self):
         self.click_element(self.L_PROFILE_LINK)

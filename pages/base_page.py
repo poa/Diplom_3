@@ -13,8 +13,9 @@ class Locators:
     L_HEADER_BURGER_LOGO  = (By.CSS_SELECTOR , f"header a:not([class])[href='{PP.MAIN}']")
 
     L_MODAL_ANIMATION        = (By.CSS_SELECTOR , "div[class^='Modal_modal'] img[class*='loading']")
-    # L_MODAL_ANIMATION_OPEN = (By.CSS_SELECTOR , "div[class^='Modal_modal_open'] img[class*='loading']")
+    L_MODAL_ANIMATION_OPEN   = (By.CSS_SELECTOR , "div[class^='Modal_modal_open'] img[class*='loading']")
     L_MODAL_CONTAINER        = (By.CSS_SELECTOR , "section[class^='Modal_modal']>div[class*='container']")
+    L_MODAL_CONTAINER_OPEN   = (By.CSS_SELECTOR , "section[class^='Modal_modal_open']>div[class*='container']")
     L_MODAL_LOADING_OVERLAY  = (By.CSS_SELECTOR , "section div[class^='Modal_modal_overlay__']")
     L_MODAL_CLOSE_BUTTON     = (By.CSS_SELECTOR , " button[class*='close_modified']")
     L_ORDER_ID               = (By.CSS_SELECTOR , "[class*='text text_type_digits'")
@@ -35,13 +36,11 @@ class BasePage(Locators):
     def open_page(self):
         PM.open_page(self.driver, self.page_url)
 
-    def is_loaded(self,locator=None, path=None) -> bool:
+    def is_loaded(self, locator=None, path=None) -> bool:
+        self.wait_loading()
         _locator = locator if locator is not None else self._is_loaded_locator
         _path = path if path is not None else self.PAGE_PATH
-        result = (
-            PM.is_visible(self.driver, _locator)
-            and self.current_path == _path
-        )
+        result = PM.is_visible(self.driver, _locator) and self.current_path == _path
         return result
 
     def wait_loading(self):
@@ -82,15 +81,18 @@ class BasePage(Locators):
         open_container.find_element(*self.L_MODAL_CLOSE_BUTTON).click()
 
     def is_modal_container_open(self):
-        result = PM.is_displayed(self.driver, self.L_MODAL_CONTAINER)
+        result = PM.is_visible(self.driver, self.L_MODAL_CONTAINER_OPEN)
         return result
 
     def is_modal_animation_open(self):
-        result = PM.is_displayed(self.driver, self.L_MODAL_CONTAINER)
+        result = PM.is_displayed(self.driver, self.L_MODAL_ANIMATION_OPEN)
         return result
 
     def wait_animation_closed(self):
-        result = PM.is_invisible(self.driver, self.L_MODAL_ANIMATION)
+        result = (
+            PM.is_invisible(self.driver, self.L_MODAL_ANIMATION)
+            and self.is_modal_animation_open() is False
+        )
         return result
 
     def get_modal_order_id(self):

@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 from .const import PagePath as PP, PageTitle as PT
-from .tools import PageMethods as PM
 
 from .base_page import BasePage
 
@@ -25,10 +24,10 @@ class RegisterPage(BasePage, Locators):
         self._is_loaded_locator = self.L_PAGE_TITLE
 
     def register(self, name, email, password):
-        PM.fill_text_input(self.driver, self.L_NAME_INPUT, name)
-        PM.fill_text_input(self.driver, self.L_EMAIL_INPUT, email)
-        PM.fill_text_input(self.driver, self.L_PASSWORD_INPUT, password)
-        PM.click_element(self.driver, self.L_REGISTER_BUTTON)
+        self.fill_text_input(self.L_NAME_INPUT, name)
+        self.fill_text_input(self.L_EMAIL_INPUT, email)
+        self.fill_text_input(self.L_PASSWORD_INPUT, password)
+        self.click_element(self.L_REGISTER_BUTTON)
 
     def click_login_link(self):
-        PM.click_element(self.driver, self.L_LOGIN_LINK)
+        self.click_element(self.L_LOGIN_LINK)

@@ -17,7 +17,7 @@ class PagePath(enum.StrEnum):
     # fmt: off
     ACCOUNT          = "/account"
     FEED             = "/feed"
-    RECOVER_PASSWORD = "/forgot-password"
+    FORGOT_PASSWORD = "/forgot-password"
     INGREDIENT       = "/ingredient"
     LOGIN            = "/login"
     MAIN             = "/"
@@ -35,6 +35,5 @@ class PageTitle(enum.StrEnum):
     MAIN             = "Соберите бургер"
     RECOVER_PASSWORD = "Восстановление пароля"
     REGISTER         = "Регистрация"
-    RESET_PASSWORD   = "Восстановление пароля"
     # fmt: on
 

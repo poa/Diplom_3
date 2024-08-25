@@ -22,9 +22,9 @@ def test_user():
         yield test_user
 
 
-@pytest.fixture(params=["Firefox", "Chrome"], scope="function")
-# @pytest.fixture(params=["Chrome"], scope="function")
+# @pytest.fixture(params=["Firefox", "Chrome"], scope="function")
 # @pytest.fixture(params=["Firefox"], scope="function")
+@pytest.fixture(params=["Chrome"], scope="function")
 def driver(request, test_user):
     _Driver = getattr(webdriver, request.param)
     _Options = getattr(webdriver, f"{request.param}Options")

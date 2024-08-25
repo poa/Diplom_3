@@ -82,6 +82,10 @@ class PageMethods:
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(element))
 
     @staticmethod
+    def wait_for_clickalbe(driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT):
+        WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(target))
+
+    @staticmethod
     def click_element(driver, target: WebElement | Tuple[str, str], timeout=TIMEOUT):
         if isinstance(target, Tuple):
             element = PageMethods.find_present_element(driver, target, timeout)
@@ -97,14 +101,12 @@ class PageMethods:
         dst: WebElement | Tuple[str, str],
         timeout=TIMEOUT,
     ):
-        if isinstance(dst, Tuple):
-            _src = PageMethods.find_present_element(driver, src, timeout)
-            _dst = PageMethods.find_present_element(driver, dst, timeout)
-        else:
-            _src = src
-            _dst = dst
+        _src = PageMethods.find_present_element(driver, src, timeout)
+        _dst = PageMethods.find_present_element(driver, dst, timeout)
 
         PageMethods.scroll_to_clickable_element(driver, _src, timeout)
+        PageMethods.wait_for_clickalbe(driver, _dst, timeout)
+
         ActionChains(driver).drag_and_drop(_src, _dst).perform()
 
     @staticmethod
