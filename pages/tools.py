@@ -1,9 +1,12 @@
 from typing import Tuple
+from urllib.parse import urlparse
 
+from selenium.common import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 from .const import Constants as C
 
@@ -18,6 +21,10 @@ class PageMethods:
     @staticmethod
     def get_current_url(driver):
         return driver.current_url
+
+    @staticmethod
+    def get_current_path(driver):
+        return urlparse(driver.current_url).path
 
     @staticmethod
     def find_present_element(driver, locator, timeout=TIMEOUT):
@@ -94,8 +101,13 @@ class PageMethods:
 
     @staticmethod
     def is_displayed(driver, locator):
-        element = PageMethods.find_present_element(driver, locator)
-        return element.is_displayed()
+        try:
+            element = PageMethods.find_present_element(driver, locator)
+            result = element.is_displayed()
+        except (NoSuchElementException, TimeoutException):
+            result = False
+
+        return result
 
     @staticmethod
     def switch_to_next_window(driver):

@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from .const import Constants as C
+from .const import PagePath as PP, PageTitle as PT
 from .tools import PageMethods as PM
 
 
@@ -10,10 +10,10 @@ class Locators:
     """
 
     # fmt: off
-    L_ACCOUNT_LINK    = (By.CSS_SELECTOR, f"header a:is([class][href='{C.ACCOUNT_PATH}'])")
-    L_FEED_LINK       = (By.CSS_SELECTOR, f"header a:is([class][href='{C.FEED_PATH}'])")
-    L_MAIN_LINK       = (By.CSS_SELECTOR, f"header a:is([class][href='{C.MAIN_PATH}'])")
-    L_BURGER_LOGO     = (By.CSS_SELECTOR, f"header a:not([class])[href='{C.MAIN_PATH}']")
+    L_ACCOUNT_LINK = (By.CSS_SELECTOR , f"header a:is([class][href='{PP.ACCOUNT}'])")
+    L_FEED_LINK    = (By.CSS_SELECTOR , f"header a:is([class][href='{PP.FEED}'])")
+    L_MAIN_LINK    = (By.CSS_SELECTOR , f"header a:is([class][href='{PP.MAIN}'])")
+    L_BURGER_LOGO  = (By.CSS_SELECTOR , f"header a:not([class])[href='{PP.MAIN}']")
     # fmt: on
 
 

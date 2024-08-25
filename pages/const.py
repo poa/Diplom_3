@@ -4,20 +4,37 @@ import enum
 class Constants:
     TIMEOUT = 5
 
-    # PATH constants
-    ACCOUNT_PATH = "/account"
-    PROFILE_PATH = "/account/profile"
-    ORDER_HISTORY_PATH = "/account/order-history"
-    FEED_PATH = "/feed"
-    LOGIN_PATH = "/login"
-    MAIN_PATH = "/"
-    REGISTER_PATH = "/register"
-    FORGOT_PASSWORD_PATH = "/forgot-password"
-    RESET_PASSWORD_PATH = "/reset-password"
-    INGREDIENT_PATH = "/ingredient"
-
 
 class IngredientType(enum.StrEnum):
-    BUNS = "Булки"
+    # fmt: off
+    BUNS     = "Булки"
     FILLINGS = "Начинки"
-    SAUCES = "Соусы"
+    SAUCES   = "Соусы"
+    # fmt: on
+
+
+class PagePath(enum.StrEnum):
+    # fmt: off
+    ACCOUNT        = "/account"
+    FEED           = "/feed"
+    RECOVER_PASSWORD         = "/forgot-password"
+    INGREDIENT     = "/ingredient"
+    LOGIN          = "/login"
+    MAIN           = "/"
+    ORDER_HISTORY  = "/account/order-history"
+    PROFILE        = "/account/profile"
+    REGISTER       = "/register"
+    RESET_PASSWORD          = "/reset-password"
+    # fmt: on
+
+
+class PageTitle(enum.StrEnum):
+    # fmt: off
+    FEED             = "Лента заказов"
+    LOGIN            = "Вход"
+    MAIN             = "Соберите бургер"
+    RECOVER_PASSWORD = "Восстановление пароля"
+    REGISTER         = "Регистрация"
+    RESET_PASSWORD   = "Восстановление пароля"
+    # fmt: on
+

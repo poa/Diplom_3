@@ -1,14 +1,14 @@
 from selenium.webdriver.common.by import By
 
-from .const import Constants as C
+from .const import PagePath as PP, PageTitle as PT
 from .tools import PageMethods as PM
 
 
 class Locators:
     # fmt: off
     L_LOGOUT_BUTTON      = (By.CSS_SELECTOR, "main nav button[class^='Account_button'")
-    L_PROFILE_LINK       = (By.CSS_SELECTOR, f"main nav a[href='{C.PROFILE_PATH}'")
-    L_ORDER_HISTORY_LINK = (By.CSS_SELECTOR, f"main nav a[href='{C.ORDER_HISTORY_PATH}'")
+    L_PROFILE_LINK       = (By.CSS_SELECTOR, f"main nav a[href='{PP.PROFILE}'")
+    L_ORDER_HISTORY_LINK = (By.CSS_SELECTOR, f"main nav a[href='{PP.ORDER_HISTORY}'")
     # fmt: on
 
 

@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from .const import Constants as C, IngredientType as IT
+from .const import IngredientType as IT, PagePath as PP, PageTitle as PT
 from .tools import PageMethods as PM
 
 from .base_page import BasePage
@@ -8,22 +8,23 @@ from .base_page import BasePage
 
 class Locators:
     # fmt: off
-    L_INGREDIENT_LINK       = (By.CSS_SELECTOR, f"main nav a[href='{C.INGREDIENT_PATH}/%s']")
-    # L_INGREDIENT_COUNTER    = (By.CSS_SELECTOR, f"main nav a[href='{C.INGREDIENT_PATH}/%s'] p[class^='counter']")
-    L_INGREDIENT_COUNTER    = (By.CSS_SELECTOR, f"p[class^='counter']")
-    L_INGREDIENT_TYPE_TAB   = (By.XPATH, "//main//span[text()='%s']")
-    L_DROP_ZONE             = (By.CSS_SELECTOR, "main section>ul")
-    L_LOGIN_BUTTON          = (By.XPATH, "//main//button[text()='Войти в аккаунт']")
-    L_MAKE_ORDER_BUTTON     = (By.XPATH, "//main//button[text()='Оформить заказ']")
-
+    L_PAGE_TITLE           = (By.XPATH        , f"//main//h1[text()='{PT.MAIN}']")
+    L_INGREDIENT_LINK      = (By.CSS_SELECTOR , f"main nav a[href='{PP.INGREDIENT}/%s']")
+    # L_INGREDIENT_COUNTER = (By.CSS_SELECTOR , f"main nav a[href='{C.INGREDIENT_PATH}/%s'] p[class^='counter']")
+    L_INGREDIENT_COUNTER   = (By.CSS_SELECTOR , f"p[class^='counter']")
+    L_INGREDIENT_TYPE_TAB  = (By.XPATH        , "//main//span[text()='%s']")
+    L_DROP_ZONE            = (By.CSS_SELECTOR , "main section>ul")
+    L_LOGIN_BUTTON         = (By.XPATH        , "//main//button[text()='Войти в аккаунт']")
+    L_MAKE_ORDER_BUTTON    = (By.XPATH        , "//main//button[text()='Оформить заказ']")
     # fmt: on
 
 
 class MainPage(BasePage, Locators):
-    PAGE_PATH = C.MAIN_PATH
+    PAGE_PATH = PP.MAIN
 
     def __init__(self, driver):
         BasePage.__init__(self, driver)
+        self._is_loaded_locator = self.L_PAGE_TITLE
 
     def click_buns_tab(self):
         locator = (self.L_INGREDIENT_TYPE_TAB[0], self.L_INGREDIENT_TYPE_TAB[1] % IT.BUNS)
