@@ -1,11 +1,13 @@
 import pytest
 from selenium import webdriver
 
+from api.auth import AuthAPI
 from const import Constants as C
 from data import Data as D
-from api.auth import AuthAPI
+import tools
 
 from pages.login_page import LoginPage
+from pages.main_page import MainPage
 
 
 @pytest.fixture(scope="session")
@@ -23,20 +25,18 @@ def test_user():
 
 
 # @pytest.fixture(params=["Firefox", "Chrome"], scope="function")
-# @pytest.fixture(params=["Firefox"], scope="function")
-@pytest.fixture(params=["Chrome"], scope="function")
+@pytest.fixture(params=["Firefox"], scope="function")
+# @pytest.fixture(params=["Chrome"], scope="function")
 def driver(request, test_user):
     _Driver = getattr(webdriver, request.param)
     _Options = getattr(webdriver, f"{request.param}Options")
     options = _Options()
-    # options.add_argument("--headless")
-    # options.add_argument("--user-data-dir=R:/browsers/webdriver")
-    # options.add_argument("--ignore-certificate-errors")
-    # options.add_argument("--window-size=1280,1280")
+    options.add_argument("--headless")
+    options.add_argument("--window-size=1280,1280")
     # options.add_argument("--window-position=2560,32")
     driver = _Driver(options=options)
-    driver.set_window_position(2560, 32)
-    driver.set_window_size(1280, 1280)
+    # driver.set_window_position(2560, 32)
+    # driver.set_window_size(1280, 1280)
 
     driver.get(C.APP_URL)
     yield driver
@@ -52,4 +52,10 @@ def authorized(driver, test_user):
         yield driver
     else:
         raise RuntimeError("Login failed")
+
+@pytest.fixture(scope="function")
+def user_with_orders(authorized, test_user, data):
+    main_page = MainPage(authorized)
+    tools.make_order(main_page, data)
+    yield authorized
 

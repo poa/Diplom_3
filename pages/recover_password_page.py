@@ -1,3 +1,5 @@
+import allure
+
 from selenium.webdriver.common.by import By
 
 from .const import PagePath as PP, PageTitle as PT
@@ -27,6 +29,7 @@ class RecoverPasswordPage(BasePage, Locators):
         BasePage.__init__(self, driver)
         self._is_loaded_locator = self.L_RECOVER_PAGE_TITLE
 
+    @allure.step("Check if recovery password page is loaded")
     def is_forgot_page_loaded(self):
         result = (
             self.is_loaded(path=PP.FORGOT_PASSWORD) is True
@@ -34,6 +37,7 @@ class RecoverPasswordPage(BasePage, Locators):
         )
         return result
 
+    @allure.step("Check if reset password page is loaded")
     def is_reset_page_loaded(self):
         result = (
             self.is_loaded(path=PP.RESET_PASSWORD) is True
@@ -41,6 +45,7 @@ class RecoverPasswordPage(BasePage, Locators):
         )
         return result
 
+    @allure.step("Check password is revealed")
     def is_password_revealed(self):
         result = PM.is_visible(self.driver, self.L_PASSWORD_REVEALED)
         return result
@@ -48,18 +53,23 @@ class RecoverPasswordPage(BasePage, Locators):
     def fill_password(self, password):
         self.fill_text_input(self.L_PASSWORD_INPUT, password)
 
+    @allure.step("Click recovery button")
     def click_recover_button(self):
         self.click_element(self.L_RECOVER_BUTTON)
 
+    @allure.step("Click show password button")
     def click_show_password_button(self):
         self.click_element(self.L_SHOW_PASSWORD_ICON)
 
+    @allure.step("Click login link")
     def click_login_link(self):
         self.click_element(self.L_LOGIN_LINK)
 
+    @allure.step("Click save button")
     def click_save_button(self):
         self.click_element(self.L_SAVE_BUTTON)
 
+    @allure.step("Request password recovery with email")
     def recover(self, email):
         self.fill_text_input(self.L_EMAIL_INPUT, email)
         self.click_recover_button()

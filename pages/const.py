@@ -17,7 +17,7 @@ class PagePath(enum.StrEnum):
     # fmt: off
     ACCOUNT          = "/account"
     FEED             = "/feed"
-    FORGOT_PASSWORD = "/forgot-password"
+    FORGOT_PASSWORD  = "/forgot-password"
     INGREDIENT       = "/ingredient"
     LOGIN            = "/login"
     MAIN             = "/"

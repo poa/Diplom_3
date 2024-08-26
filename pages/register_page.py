@@ -1,7 +1,8 @@
+import allure
+
 from selenium.webdriver.common.by import By
 
 from .const import PagePath as PP, PageTitle as PT
-
 from .base_page import BasePage
 
 
@@ -23,11 +24,13 @@ class RegisterPage(BasePage, Locators):
         BasePage.__init__(self, driver)
         self._is_loaded_locator = self.L_PAGE_TITLE
 
+    @allure.step("Registering user")
     def register(self, name, email, password):
         self.fill_text_input(self.L_NAME_INPUT, name)
         self.fill_text_input(self.L_EMAIL_INPUT, email)
         self.fill_text_input(self.L_PASSWORD_INPUT, password)
         self.click_element(self.L_REGISTER_BUTTON)
 
+    @allure.step("Click login link")
     def click_login_link(self):
         self.click_element(self.L_LOGIN_LINK)
