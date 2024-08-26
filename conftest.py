@@ -24,8 +24,8 @@ def test_user():
         yield test_user
 
 
-# @pytest.fixture(params=["Firefox", "Chrome"], scope="function")
-@pytest.fixture(params=["Firefox"], scope="function")
+@pytest.fixture(params=["Firefox", "Chrome"], scope="function")
+# @pytest.fixture(params=["Firefox"], scope="function")
 # @pytest.fixture(params=["Chrome"], scope="function")
 def driver(request, test_user):
     _Driver = getattr(webdriver, request.param)
@@ -33,10 +33,7 @@ def driver(request, test_user):
     options = _Options()
     options.add_argument("--headless")
     options.add_argument("--window-size=1280,1280")
-    # options.add_argument("--window-position=2560,32")
     driver = _Driver(options=options)
-    # driver.set_window_position(2560, 32)
-    # driver.set_window_size(1280, 1280)
 
     driver.get(C.APP_URL)
     yield driver

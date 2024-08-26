@@ -28,7 +28,7 @@ class TestPasswordRecovery:
 
         assert recover_password_page.is_reset_page_loaded()
 
-    @allure.test("Test password can be revealed with show password button")
+    @allure.title("Test password can be revealed with show password button")
     def test_show_password_button_password_revealed(self, driver):
         recover_password_page = RecoverPasswordPage(driver)
 
